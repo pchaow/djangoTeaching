@@ -4,6 +4,10 @@ from django.utils.html import format_html
 from .models import Activity,Student,ActivityTimeline
 
 # Register your models here.
+class ActivityTimelineInline(admin.TabularInline) :
+    model = ActivityTimeline
+
+
 
 class ActivityAdmin(admin.ModelAdmin) :
     list_display = ['id','activity_name',
@@ -11,6 +15,10 @@ class ActivityAdmin(admin.ModelAdmin) :
                     'activity_type',
                     'activity_date']
     list_display_links = ['id','activity_name']
+
+    inlines = [
+        ActivityTimelineInline
+    ]
 
     COLORDICT = {
         'AC' : 'red',
