@@ -30,3 +30,9 @@ class Activity(models.Model):
         return f'{self.activity_name} - {self.activity_date}'
 
     pass
+
+class ActivityTimeline(models.Model) :
+    activity = models.ForeignKey(Activity,on_delete=models.CASCADE)
+    activity_start = models.DateTimeField()
+    activity_stop = models.DateTimeField(blank=True,null=True)
+    activity_plantitle = models.CharField(max_length=255)
