@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from .forms import ActivityForm
 from .models import Activity
@@ -12,21 +12,21 @@ def index(request):
         editActivity = Activity.objects.get(id=request.GET['editId'])
 
     if request.POST:
-        createForm = ActivityForm(request.POST,instance=editActivity)
+        createForm = ActivityForm(request.POST, instance=editActivity)
         if (createForm.is_valid()):
             newAct = createForm.save(commit=False)
             newAct.save()
-        editActivity = None
+        return redirect('/')
 
     activities = Activity.objects.all()
-    if editActivity :
+    if editActivity:
         activityForm = ActivityForm(instance=editActivity)
-    else :
+    else:
         activityForm = ActivityForm()
 
     return render(request, "activity/index.html", {
         'title': "Hello From Title",
         'activities': activities,
         "activityForm": activityForm,
-        'editActivity' : editActivity
+        'editActivity': editActivity
     })
