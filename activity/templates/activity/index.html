@@ -1,0 +1,11 @@
+<h1>{{ title }}</h1>
+<form method="post" action="/">
+    {% csrf_token %}
+    {{ activityForm.as_p }}
+    <button type="submit">ADD</button>
+</form>
+<ul>
+    {% for act in activities %}
+        <li>{{ act.activity_name }} - {{ act.activity_type }}</li>
+    {% endfor %}
+</ul>
