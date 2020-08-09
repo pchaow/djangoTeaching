@@ -15,7 +15,11 @@ def index(request):
         createForm = ActivityForm(request.POST, instance=editActivity)
         if (createForm.is_valid()):
             newAct = createForm.save(commit=False)
-            newAct.save()
+            if 'isDelete' in request.POST :
+                if request.POST['isDelete']:
+                    newAct.delete()
+            else :
+                newAct.save()
         return redirect('/')
 
     activities = Activity.objects.all()
