@@ -1,9 +1,10 @@
 from django.contrib import admin
 from django.utils.html import format_html
 
-from .models import Activity,Student
+from .models import Activity,Student,ActivityTimeline
 
 # Register your models here.
+
 class ActivityAdmin(admin.ModelAdmin) :
     list_display = ['id','activity_name',
                     'act_type',
@@ -35,3 +36,4 @@ class ActivityAdmin(admin.ModelAdmin) :
 
 admin.site.register(Activity,ActivityAdmin)
 admin.site.register(Student)
+admin.site.register(ActivityTimeline)

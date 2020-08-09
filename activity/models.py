@@ -15,6 +15,7 @@ class Student(models.Model):
     def __str__(self):
         return f'{self.code} - {self.name}'
 
+
 class Activity(models.Model):
     class Meta:
         verbose_name_plural = "Activities"
@@ -31,8 +32,9 @@ class Activity(models.Model):
 
     pass
 
-class ActivityTimeline(models.Model) :
-    activity = models.ForeignKey(Activity,on_delete=models.CASCADE)
+
+class ActivityTimeline(models.Model):
+    activity = models.ForeignKey(Activity, on_delete=models.CASCADE)
     activity_start = models.DateTimeField()
-    activity_stop = models.DateTimeField(blank=True,null=True)
+    activity_stop = models.DateTimeField(blank=True, null=True)
     activity_plantitle = models.CharField(max_length=255)
