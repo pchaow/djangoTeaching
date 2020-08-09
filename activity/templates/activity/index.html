@@ -1,11 +1,22 @@
 <h1>{{ title }}</h1>
-<form method="post" action="/">
-    {% csrf_token %}
-    {{ activityForm.as_p }}
-    <button type="submit">ADD</button>
-</form>
+{% if editActivity %}
+    <form method="post" action="/?editId={{ editActivity.id }}">
+        {% csrf_token %}
+        {{ activityForm.as_p }}
+        <button type="submit">UPDATE</button>
+    </form>
+{% else %}
+        <form method="post" action="/">
+        {% csrf_token %}
+        {{ activityForm.as_p }}
+        <button type="submit">ADD</button>
+    </form>
+{% endif %}
 <ul>
     {% for act in activities %}
-        <li>{{ act.activity_name }} - {{ act.activity_type }}</li>
+        <li><a href="/?editId={{ act.id }}">
+            {{ act.activity_name }} - {{ act.activity_type }}
+        </a>
+        </li>
     {% endfor %}
 </ul>
