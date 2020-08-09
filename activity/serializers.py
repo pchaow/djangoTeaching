@@ -18,9 +18,13 @@ class StudentSerializer(serializers.ModelSerializer):
 
 
 class ActivitySerializer(serializers.ModelSerializer):
+    participant = StudentSerializer(many=True,required=False)
+
     class Meta:
         model = Activity
-        fields = ['activity_name',
+        fields = ['id',
+                  'activity_name',
                   'activity_type',
                   'activity_desc',
-                  'activity_date']
+                  'activity_date',
+                  'participant']

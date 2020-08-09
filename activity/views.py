@@ -1,9 +1,15 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
+from rest_framework import  viewsets
 
 from .forms import ActivityForm
 from .models import Activity
+from .serializers import ActivitySerializer
 
+
+class ActivityViewSet(viewsets.ModelViewSet) :
+    queryset = Activity.objects.all()
+    serializer_class = ActivitySerializer
 
 # Create your views here.
 def index(request):

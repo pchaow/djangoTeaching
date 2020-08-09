@@ -25,7 +25,7 @@ class Activity(models.Model):
     activity_desc = models.TextField(blank=True, null=True)
     activity_date = models.DateTimeField(auto_now_add=True)  # วันที่สร้างกิจกรรมขึ้นมาในระบบ
 
-    participant = models.ManyToManyField(Student)
+    participant = models.ManyToManyField(Student,blank=True)
 
     def __str__(self):
         return f'{self.activity_name} - {self.activity_date}'
